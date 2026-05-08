@@ -1,6 +1,41 @@
-<h2>Adatok:</h2>
-<p>Ügyvezető: <strong>Valaki Az</strong></p>
-<p>E-mail: <strong>valaki.az@minihonlap.hu</strong></p>
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2726.3375296155727!2d19.66695091525771!3d46.89607994478184!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4743da7a6c479e1d%3A0xc8292b3f6dc69e7f!2sPallasz+Ath%C3%A9n%C3%A9+Egyetem+GAMF+Kar!5e0!3m2!1shu!2shu!4v1475753185783" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-<br>
-<a target="_blank" href="https://www.google.hu/maps/place/Pallasz+Ath%C3%A9n%C3%A9+Egyetem+GAMF+Kar/@46.8960799,19.6669509,17z/data=!3m1!4b1!4m5!3m4!1s0x4743da7a6c479e1d:0xc8292b3f6dc69e7f!8m2!3d46.8960763!4d19.6691396?hl=hu">Nagyobb térkép</a>
+<h2>Kapcsolat</h2>
+<p>Küldjön nekünk üzenetet az alábbi űrlap segítségével!</p>
+
+<form id="kapcsolat-form" action="kapcsolat" method="post">
+    <input type="text" name="nev" id="nev" placeholder="Az Ön neve">
+    <div id="nev-error" class="error"></div>
+
+    <input type="text" name="email" id="email" placeholder="E-mail címe">
+    <div id="email-error" class="error"></div>
+
+    <textarea name="szoveg" id="szoveg" placeholder="Üzenet szövege" rows="5"></textarea>
+    <div id="szoveg-error" class="error"></div>
+
+    <input type="submit" value="Üzenet küldése">
+</form>
+
+<script>
+document.getElementById('kapcsolat-form').onsubmit = function() {
+    let valid = true;
+    const nev = document.getElementById('nev').value;
+    const email = document.getElementById('email').value;
+    const szoveg = document.getElementById('szoveg').value;
+
+    // Hibamezők ürítése
+    document.querySelectorAll('.error').forEach(el => el.innerText = '');
+
+    if(nev.length < 3) {
+        document.getElementById('nev-error').innerText = "A név túl rövid (min. 3 karakter)!";
+        valid = false;
+    }
+    if(!email.includes('@') || !email.includes('.')) {
+        document.getElementById('email-error').innerText = "Érvénytelen e-mail cím!";
+        valid = false;
+    }
+    if(szoveg.trim() === '') {
+        document.getElementById('szoveg-error').innerText = "Az üzenet nem lehet üres!";
+        valid = false;
+    }
+    return valid;
+};
+</script>
