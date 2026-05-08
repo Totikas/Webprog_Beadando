@@ -1,5 +1,6 @@
 <?php
 	include('./includes/config.inc.php');
+	include_once('./includes/db_kapcsolat.php');
 	$oldal = $_SERVER['QUERY_STRING'];
 	if ($oldal!="") {
 		if (isset($oldalak[$oldal]) && file_exists("./templates/pages/{$oldalak[$oldal]['fajl']}.tpl.php")) {
@@ -13,3 +14,4 @@
 	else $keres = $oldalak['/'];
 	include('./templates/index.tpl.php'); 
 ?>
+
